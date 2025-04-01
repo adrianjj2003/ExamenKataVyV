@@ -4,13 +4,14 @@ use Deg540\DockerPHPBoilerplate\Tienda;
 
 class TiendaTest extends TestCase
 {
-    public function testAgregarProductoSinCantidad()
+    /** @test */
+    public function agregarProductoSinCantidad()
     {
         $tienda = new Tienda();
         $this->assertEquals("pan x1", $tienda->ejecutar("añadir pan"));
     }
-
-    public function testAgregarProductoConCantidad()
+    /** @test */
+    public function agregarProductoConCantidad()
     {
         $tienda = new Tienda();
         $this->assertEquals("leche x2", $tienda->ejecutar("añadir leche 2"));
@@ -21,8 +22,7 @@ class TiendaTest extends TestCase
         $tienda = new Tienda();
         $tienda->ejecutar("añadir pan");
         $tienda->ejecutar("añadir leche 2");
-        $ejemplo = $tienda->ejecutar("eliminar pan");
-        $this->assertEquals("leche x2", $ejemplo);
+        $this->assertEquals("leche x2", $tienda->ejecutar("eliminar pan"));
     }
 
 }
