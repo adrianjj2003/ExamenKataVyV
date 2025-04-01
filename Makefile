@@ -5,23 +5,21 @@ build-image:
 	docker build -t docker-php-boilerplate .
 
 build-container:
-	docker run -dt --name docker-php-StringCalculator -v .:/KataStringCalculator docker-php-boilerplate
-	docker exec docker-php-StringCalculator composer install
+	docker run -dt --name docker-php-ExamenKata -v .:/PruebaKatas/ExamenKata docker-php-boilerplate
+	docker exec docker-php-ExamenKata composer install
 
 start:
-	docker start docker-php-StringCalculator
+	docker start docker-php-ExamenKata
 
 test: start
-	docker exec docker-php-StringCalculator ./vendor/bin/phpunit tests/$(target)
+	docker exec docker-php-ExamenKata ./vendor/bin/phpunit tests/TiendaTest.php
 
 shell: start
-	docker exec -it docker-php-StringCalculator /bin/bash
+	docker exec -it docker-php-ExamenKata /bin/bash
 
 stop:
-	docker stop docker-php-StringCalculator
+	docker stop docker-php-ExamenKata
 
 clean: stop
-	docker rm docker-php-StringCalculator
+	docker rm docker-php-ExamenKata
 	rm -rf vendor
-
-##Para que salga la carpeta vendor: docker exec docker-php-StringCalculator composer update
