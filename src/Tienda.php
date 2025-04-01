@@ -15,7 +15,12 @@ class Tienda
             $this->productos[$nombre] = ($this->productos[$nombre] ?? 0) + $cantidad;
         } elseif ($accion === 'eliminar') {
             $nombre = strtolower($partes[1]);
+            if (!isset($this->productos[$nombre])) {
+                return "El producto seleccionado no existe";
+            }
             unset($this->productos[$nombre]);
+        } elseif ($accion === 'vaciar') {
+            $this->productos = [];
         }
         if (empty($this->productos)) {
             return "";

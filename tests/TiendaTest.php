@@ -17,12 +17,11 @@ class TiendaTest extends TestCase
         $this->assertEquals("leche x2", $tienda->ejecutar("añadir leche 2"));
     }
     /** @test */
-    public function eliminarProductoExistenteSinDejarCarritoVacio()
+    public function eliminarProductoExistente()
     {
         $tienda = new Tienda();
-        $tienda->ejecutar("añadir pan");
         $tienda->ejecutar("añadir leche 2");
-        $this->assertEquals("leche x2", $tienda->ejecutar("eliminar pan"));
+        $this->assertEquals("", $tienda->ejecutar("eliminar leche"));
     }
     /** @test */
     public function agregarProductoExistenteConCantidad()
@@ -31,4 +30,12 @@ class TiendaTest extends TestCase
         $tienda->ejecutar("añadir pan");
         $this->assertEquals("pan x3", $tienda->ejecutar("añadir pan 2"));
     }
+    /** @test */
+    public function eliminarProductoInexistente()
+    {
+        $tienda = new Tienda();
+        $resultado = $tienda->ejecutar("eliminar arroz");
+        $this->assertEquals("El producto seleccionado no existe", $resultado);
+    }
+
 }
