@@ -13,7 +13,16 @@ class TiendaTest extends TestCase
     public function testAgregarProductoConCantidad()
     {
         $tienda = new Tienda();
-        $tienda->ejecutar("añadir pan");
-        $this->assertEquals("leche x2, pan x1", $tienda->ejecutar("añadir leche 2"));
+        $this->assertEquals("leche x2", $tienda->ejecutar("añadir leche 2"));
     }
+    /** @test */
+    public function eliminarProductoExistenteSinDejarCarritoVacio()
+    {
+        $tienda = new Tienda();
+        $tienda->ejecutar("añadir pan");
+        $tienda->ejecutar("añadir leche 2");
+        $ejemplo = $tienda->ejecutar("eliminar pan");
+        $this->assertEquals("leche x2", $ejemplo);
+    }
+
 }

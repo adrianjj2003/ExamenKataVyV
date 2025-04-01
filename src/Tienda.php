@@ -8,10 +8,14 @@ class Tienda
     public function ejecutar(string $instruccion): string
     {
         $partes = explode(' ', trim($instruccion));
-        if (strtolower($partes[0]) === 'añadir') {
+        $accion = strtolower($partes[0]);
+        if ($accion === 'añadir') {
             $nombre = strtolower($partes[1]);
             $cantidad = isset($partes[2]) ? (int)$partes[2] : 1;
             $this->productos[$nombre] = ($this->productos[$nombre] ?? 0) + $cantidad;
+        } elseif ($accion === 'eliminar') {
+            $nombre = strtolower($partes[1]);
+            unset($this->productos[$nombre]);
         }
         if (empty($this->productos)) {
             return "";
