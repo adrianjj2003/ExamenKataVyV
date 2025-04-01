@@ -29,7 +29,6 @@ class TiendaTest extends TestCase
     {
         $tienda = new Tienda();
         $tienda->ejecutar("añadir pan");
-        $ejemplo = $tienda->ejecutar("añadir pan 2");
-        $this->assertEquals("pan x3",$ejemplo);
+        $this->assertEquals("pan x3", $tienda->ejecutar("añadir pan 2"));
     }
 }
