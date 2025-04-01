@@ -44,6 +44,11 @@ class TiendaTest extends TestCase
         $tienda->ejecutar("añadir leche 2");
         $this->assertEquals("", $tienda->ejecutar("vaciar"));
     }
-
-
+    /** @test */
+    public function sumarPanapanenminusculaDevuelvePanx2()
+    {
+        $tienda = new Tienda();
+        $tienda->ejecutar("añadir pan");
+        $this->assertEquals("pan x2", $tienda->ejecutar("añadir Pan"));
+    }
 }
