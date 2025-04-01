@@ -36,5 +36,15 @@ class TiendaTest extends TestCase
         $tienda = new Tienda();
         $this->assertEquals("El producto seleccionado no existe", $tienda->ejecutar("eliminar arroz"));
     }
+    /** @test */
+    public function vaciarLaListaDevuelveNada()
+    {
+        $tienda = new Tienda();
+        $tienda->ejecutar("añadir pan");
+        $tienda->ejecutar("añadir leche 2");
+        $resultado = $tienda->ejecutar("vaciar");
+        $this->assertEquals("", $resultado);
+    }
+
 
 }

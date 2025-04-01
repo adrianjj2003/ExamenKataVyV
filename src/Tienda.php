@@ -1,6 +1,7 @@
 <?php
 namespace Deg540\DockerPHPBoilerplate;
 
+
 class Tienda
 {
     private array $productos = [];
